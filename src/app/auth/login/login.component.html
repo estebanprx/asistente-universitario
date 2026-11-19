@@ -1,0 +1,317 @@
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Formula 1 - Iniciar Sesión</title>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, sans-serif;
+        }
+
+        /* FONDO GENERAL */
+        html, body {
+            width: 100%;
+            min-height: 100%;
+            background: #080808 !important;
+        }
+
+        body {
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background:
+                radial-gradient(circle at center, #292929 0%, #111111 55%, #050505 100%) !important;
+            overflow: hidden;
+            position: relative;
+        }
+
+        /* DECORACIÓN DEL FONDO */
+        body::before {
+            content: "F1";
+            position: absolute;
+            right: -20px;
+            bottom: -100px;
+            font-size: 400px;
+            font-weight: 900;
+            font-style: italic;
+            color: rgba(225, 6, 0, 0.06);
+            pointer-events: none;
+        }
+
+        body::after {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 7px;
+            background: linear-gradient(
+                90deg,
+                #e10600 0%,
+                #ffffff 50%,
+                #e10600 100%
+            );
+        }
+
+        /* CONTENEDOR DEL LOGIN */
+        .login-container {
+            position: relative;
+            z-index: 1;
+            width: 380px;
+            padding: 40px 35px;
+            background: linear-gradient(145deg, #242424, #101010);
+            border-radius: 12px;
+            border-top: 5px solid #e10600;
+            box-shadow:
+                0 15px 40px rgba(0, 0, 0, 0.8),
+                0 0 25px rgba(225, 6, 0, 0.15);
+            color: white;
+            overflow: hidden;
+        }
+
+        /* DETALLE DECORATIVO */
+        .login-container::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 5px;
+            background: linear-gradient(
+                90deg,
+                #e10600,
+                #ff4545,
+                #ffffff
+            );
+        }
+
+        /* TÍTULO */
+        .login-container h2 {
+            text-align: center;
+            margin-bottom: 10px;
+            color: #ffffff;
+            font-size: 30px;
+            font-weight: 900;
+            font-style: italic;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        .login-container h2::after {
+            content: "RACING TEAM";
+            display: block;
+            margin-top: 8px;
+            color: #e10600;
+            font-size: 11px;
+            letter-spacing: 5px;
+            font-style: normal;
+        }
+
+        /* DESCRIPCIÓN */
+        .login-container p {
+            text-align: center;
+            color: #aaaaaa;
+            margin: 18px 0 30px;
+            font-size: 13px;
+        }
+
+        /* CAMPOS */
+        .input-group {
+            margin-bottom: 22px;
+        }
+
+        .input-group label {
+            display: block;
+            margin-bottom: 9px;
+            color: #eeeeee;
+            font-size: 13px;
+            font-weight: bold;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .input-group input {
+            width: 100%;
+            padding: 14px;
+            background: #292929;
+            border: 1px solid #444444;
+            border-left: 3px solid #e10600;
+            border-radius: 5px;
+            outline: none;
+            color: white;
+            font-size: 14px;
+            transition: 0.3s;
+        }
+
+        .input-group input::placeholder {
+            color: #888888;
+        }
+
+        .input-group input:focus {
+            border-color: #e10600;
+            background: #333333;
+            box-shadow: 0 0 10px rgba(225, 6, 0, 0.3);
+        }
+
+        /* RECUPERAR CONTRASEÑA */
+        .forgot-password {
+            text-align: right;
+            margin-bottom: 25px;
+        }
+
+        .forgot-password a {
+            color: #aaaaaa;
+            text-decoration: none;
+            font-size: 12px;
+            transition: 0.3s;
+        }
+
+        .forgot-password a:hover {
+            color: #e10600;
+        }
+
+        /* BOTÓN */
+        .login-button {
+            width: 100%;
+            padding: 15px;
+            background: #e10600;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            font-size: 15px;
+            font-weight: 900;
+            font-style: italic;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            cursor: pointer;
+            transition: 0.3s;
+            clip-path: polygon(
+                0 0,
+                95% 0,
+                100% 25%,
+                100% 100%,
+                5% 100%,
+                0 75%
+            );
+        }
+
+        .login-button:hover {
+            background: #ff1e17;
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(225, 6, 0, 0.4);
+        }
+
+        /* REGISTRO */
+        .register {
+            text-align: center;
+            margin-top: 28px;
+            font-size: 13px;
+            color: #aaaaaa;
+        }
+
+        .register a {
+            color: #e10600;
+            font-weight: bold;
+            text-decoration: none;
+            transition: 0.3s;
+        }
+
+        .register a:hover {
+            color: #ffffff;
+        }
+
+        /* RESPONSIVE */
+        @media (max-width: 450px) {
+            .login-container {
+                width: 90%;
+                padding: 35px 25px;
+            }
+
+            .login-container h2 {
+                font-size: 25px;
+            }
+
+            body::before {
+                font-size: 250px;
+            }
+        }
+
+    </style>
+</head>
+
+<body>
+
+    <div class="login-container">
+
+        <h2>Bienvenido</h2>
+
+        <p>Inicia sesión en tu cuenta</p>
+
+        <form [formGroup]="formlogin" (ngSubmit)="iniciarSesion()" id="loginForm">
+
+            <div class="input-group">
+                <label for="usuario">Correo electrónico</label>
+
+                <input
+                    formControlName="email"
+                    type="email"
+                    id="usuario"
+                    placeholder="Ingresa tu correo"
+                    required
+                >
+            </div>
+
+            <div class="input-group">
+                <label for="password">Contraseña</label>
+
+                <input
+                    formControlName="password"
+                    type="password"
+                    id="password"
+                    placeholder="Ingresa tu contraseña"
+                    required
+                >
+            </div>
+
+            <div class="forgot-password">
+                <a href="#">¿Olvidaste tu contraseña?</a>
+            </div>
+
+            <button type="submit" class="login-button">
+                Iniciar sesión
+            </button>
+
+        </form>
+        <div class="login-failed" *ngIf="!isLogin"> 
+            <p>Login incorrecto</p>
+        </div>
+
+        <div class="register">
+            ¿No tienes cuenta?
+            <a href="#">Regístrate</a>
+        </div>
+
+    </div>
+
+    <script>
+        document.getElementById("loginForm").addEventListener("submit", function(event) {
+
+            event.preventDefault();
+
+            const usuario = document.getElementById("usuario").value;
+            const password = document.getElementById("password").value;
+
+            alert("Formulario enviado correctamente. Bienvenido: " + usuario);
+
+        });
+    </script>
+
+</body>
+</html>
